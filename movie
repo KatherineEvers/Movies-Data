@@ -1,0 +1,70 @@
+CREATE TABLE `movieData`.`movie` (
+  `movieID` INT NOT NULL AUTO_INCREMENT,
+  `movieTitle` VARCHAR(45) NOT NULL,
+  `rated` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`movieID`));
+
+INSERT INTO `movieData`.`movie` (`movieID`, `movieTitle`, `rated`) VALUES ('1', 'Bohemian Rhapsody', 'PG13');
+INSERT INTO `movieData`.`movie` (`movieID`, `movieTitle`, `rated`) VALUES ('2', 'Bumblebee', 'PG13');
+INSERT INTO `movieData`.`movie` (`movieID`, `movieTitle`, `rated`) VALUES ('3', 'The Upside', 'PG13');
+INSERT INTO `movieData`.`movie` (`movieID`, `movieTitle`, `rated`) VALUES ('4', 'Mary Poppins Returns', 'PG');
+INSERT INTO `movieData`.`movie` (`movieID`, `movieTitle`, `rated`) VALUES ('5', 'The Lego Movie 2', 'PG');
+INSERT INTO `movieData`.`movie` (`movieID`, `movieTitle`, `rated`) VALUES ('6', 'Aquaman', 'PG13');
+
+CREATE TABLE `movieData`.`people` (
+  `personID` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`personID`));
+
+INSERT INTO `movieData`.`people` (`personID`, `name`) VALUES ('1', 'Nick');
+INSERT INTO `movieData`.`people` (`personID`, `name`) VALUES ('2', 'Charles');
+INSERT INTO `movieData`.`people` (`personID`, `name`) VALUES ('3', 'Chelsea');
+INSERT INTO `movieData`.`people` (`personID`, `name`) VALUES ('4', 'Ashley');
+INSERT INTO `movieData`.`people` (`personID`, `name`) VALUES ('5', 'Kelly');
+
+CREATE TABLE `movieData`.`ratings` (
+  `personID` INT NOT NULL,
+  `movieID` INT NOT NULL,
+  `rating` INT NOT NULL);
+
+ALTER TABLE `movieData`.`ratings` 
+ADD COLUMN `ratingsID` INT NOT NULL AUTO_INCREMENT AFTER `rating`,
+ADD PRIMARY KEY (`ratingsID`);
+;
+
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('3', '1', '4');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('3', '2', '2');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('3', '3', '4');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('3', '4', '2');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('3', '5', '3');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('3', '6', '4');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('4', '1', '5');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('4', '2', '4');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('4', '3', '2');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('4', '4', '1');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('5', '1', '5');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('5', '2', '4');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('5', '3', '2');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('5', '6', '3');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('1', '1', '4');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('1', '2', '4');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('1', '5', '4');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('1', '6', '3');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('2', '1', '3');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('2', '2', '3');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('2', '3', '3');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('2', '4', '3');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('2', '5', '3');
+INSERT INTO `movieData`.`ratings` (`personID`, `movieID`, `rating`) VALUES ('2', '6', '4');
+
+
+select * from movie;
+
+select * from ratings;
+
+select * from people;
+
+
+SELECT * from ratings
+LEFT JOIN movie USING (movieID)
+LEFT JOIN people USING (personID)
